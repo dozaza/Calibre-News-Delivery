@@ -19,7 +19,7 @@ class AdvancedUserRecipe1277129332(BasicNewsRecipe):
     remove_javascript = True
     use_embedded_content = False
     no_stylesheets = True
-    encoding = 'GB2312'
+    encoding = 'utf-8'
     conversion_options = {'linearize_tables': True}
     masthead_url = 'http://www.people.com.cn/img/2010wb/images/logo.gif'
     compress_news_images = True
