@@ -22,7 +22,7 @@ class AdvancedUserRecipe1277129332(BasicNewsRecipe):
     encoding = 'GB2312'
     conversion_options = {'linearize_tables': True}
     masthead_url = 'http://www.people.com.cn/img/2010wb/images/logo.gif'
-    compress_news_images = true
+    compress_news_images = True
 
     recipe_specific_options = {
         'days': {
