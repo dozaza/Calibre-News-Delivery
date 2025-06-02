@@ -61,36 +61,7 @@ jobs:
       - name: Checking Recipe
         if: ${{ success() }}
         run: |
-          declare -A recipe_paths
-          add_recipe() {
-            local name="$(basename "$recipe_path")"
-            local key=$(echo "$name" | md5sum | cut -d ' ' -f 1)
-            recipe_paths[$key]="$recipe_path"
-          }
-          if [ -f 'southern_weekly.txt' ]; then
-            while read recipe_path || [ -n "$recipe_path" ]; do
-              if [ ! -n "$recipe_path" ]; then continue; fi
-              title="${recipe_path%.recipe}"
-              result="$(ebook-convert --list-recipes | grep "$title" || true)"
-              if [ ! -n "$result" ]; then
-                echo "Recipe \"$recipe_path\" does not exists"; continue
-              fi
-              if [ "${recipe_path##*.}" != 'recipe' ]; then
-                recipe_path="$recipe_path".recipe
-              fi
-              add_recipe
-            done < southern_weekly.txt
-          fi
-          for key in ${!recipe_paths[@]}; do
-            recipe_path="${recipe_paths[$key]}"
-            echo "Recipe path: $recipe_path"
-            echo "$recipe_path" >> temp_recipe_list.txt
-          done
-          count=${#recipe_paths[@]}
-          echo "Recipe count: $count"
-          if [ $count -eq 0 ]; then
-            echo 'No recipe needs processing'; exit 1
-          fi
+          echo "./southern_weekly.recipe" >> temp_recipe_list.txt
       - name: Converting Ebook
         if: ${{ success() }}
         run: |
