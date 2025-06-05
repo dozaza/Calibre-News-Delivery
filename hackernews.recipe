@@ -29,6 +29,7 @@ class HNWithCommentsLink(BasicNewsRecipe):
     encoding = 'utf-8'
     language = 'en'
     requires_version = (0, 8, 16)
+    compress_news_images = True
 
     feeds = [
         (u'Hacker News Frontpage', 'https://hnrss.org/frontpage'),
